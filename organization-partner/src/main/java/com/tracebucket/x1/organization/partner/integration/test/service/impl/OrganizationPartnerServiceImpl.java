@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by sadath on 04-Jun-2015.
@@ -41,5 +43,22 @@ public class OrganizationPartnerServiceImpl implements OrganizationPartnerServic
             partner.changeOwner(new DefaultOwner(organizationUid));
             return partner;
         }
+    }
+
+    @Override
+    public Map<DefaultOrganization, Set<DefaultPartner>> getOrganizationsPartners() {
+        List<DefaultOrganization> organizations = organizationService.findAll();
+        ConcurrentHashMap<DefaultOrganization, Set<DefaultPartner>> response = new ConcurrentHashMap<DefaultOrganization, Set<DefaultPartner>>();
+        if(organizations != null && organizations.size() > 0) {
+            organizations.parallelStream().forEach(o -> {
+                List<DefaultPartner> partners = partnerService.findPartnersByOrganization(o.getAggregateId().getAggregateId());
+                if(partners != null && partners.size() > 0) {
+                    response.put(o, new HashSet<DefaultPartner>(partners));
+                } else {
+                    response.put(o, Collections.emptySet());
+                }
+            });
+        }
+        return response;
     }
 }

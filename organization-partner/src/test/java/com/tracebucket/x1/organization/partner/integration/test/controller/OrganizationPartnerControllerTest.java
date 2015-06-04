@@ -7,6 +7,7 @@ import com.tracebucket.x1.organization.partner.integration.test.fixture.Organiza
 import com.tracebucket.x1.organization.partner.integration.test.fixture.PartnerResourceFixture;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.OrganizationResource;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.PartnerResource;
+import com.tracebucket.x1.partner.api.rest.resources.DefaultPartnerResource;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,6 +25,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sadath on 04-Jun-2015.
@@ -82,6 +85,20 @@ public class OrganizationPartnerControllerTest {
         Assert.assertNotNull(partner.getUid());
         Assert.assertNotNull(partner.getOwner());
         Assert.assertNotNull(partner.getOwner().getOrganizationUID());
+    }
+
+    @Test
+    public void testGetOrganizationsPartners() throws Exception {
+        createOrganization();
+        createPartner();
+        restTemplate.put(basePath + "/organization/" + organization.getUid() + "/partner/" + partner.getUid(), null);
+        partner = restTemplate.getForObject(basePath + "/partner/" + partner.getUid(), PartnerResource.class);
+        Assert.assertNotNull(partner.getUid());
+        Assert.assertNotNull(partner.getOwner());
+        Assert.assertNotNull(partner.getOwner().getOrganizationUID());
+        Map<DefaultOrganizationResource, List<DefaultPartnerResource>> response = restTemplate.getForObject(basePath + "/organizations/partners", Map.class);
+        Assert.assertNotNull(response);
+        Assert.assertTrue(response.size() > 0);
     }
 
     @After
