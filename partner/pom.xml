@@ -74,7 +74,7 @@
         <dependency>
             <groupId>com.tracebucket.x1.partner</groupId>
             <artifactId>x1-partner-api</artifactId>
-            <version>0.1</version>
+            <version>0.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

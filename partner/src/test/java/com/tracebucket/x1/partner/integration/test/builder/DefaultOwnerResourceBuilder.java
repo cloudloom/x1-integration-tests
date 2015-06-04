@@ -6,8 +6,7 @@ import com.tracebucket.x1.partner.api.rest.resources.DefaultOwnerResource;
  * Created by vishwa on 23-01-2015.
  */
 public class DefaultOwnerResourceBuilder {
-
-    private String name;
+    private String organizationUID;
 
     private DefaultOwnerResourceBuilder(){ }
 
@@ -15,14 +14,14 @@ public class DefaultOwnerResourceBuilder {
         return new DefaultOwnerResourceBuilder();
     }
 
-    public DefaultOwnerResourceBuilder withName(String name){
-        this.name = name;
+    public DefaultOwnerResourceBuilder withOrganizationUID(String organizationUID){
+        this.organizationUID = organizationUID;
         return this;
     }
 
     public DefaultOwnerResource build(){
         DefaultOwnerResource owner = new DefaultOwnerResource();
-        owner.setName(name);
+        owner.setOrganizationUID(organizationUID);
         return owner;
     }
 }

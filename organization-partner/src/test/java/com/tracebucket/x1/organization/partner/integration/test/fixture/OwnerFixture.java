@@ -1,16 +1,14 @@
-package com.tracebucket.x1.partner.integration.test.fixture;
+package com.tracebucket.x1.organization.partner.integration.test.fixture;
 
+import com.tracebucket.x1.organization.partner.integration.test.builder.OwnerBuilder;
 import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultOwner;
-import com.tracebucket.x1.partner.integration.test.builder.DefaultOwnerBuilder;
-
-import java.util.Date;
 
 /**
  * Created by vishwa on 23-01-2015.
  */
-public class DefaultOwnerFixture {
+public class OwnerFixture {
     public static DefaultOwner standardOwner(String organizationUID) {
-        DefaultOwner owner = DefaultOwnerBuilder.anOwnerBuilder()
+        DefaultOwner owner = OwnerBuilder.anOwnerBuilder()
                 .withOrganizationUID(organizationUID)
                 .build();
         return owner;

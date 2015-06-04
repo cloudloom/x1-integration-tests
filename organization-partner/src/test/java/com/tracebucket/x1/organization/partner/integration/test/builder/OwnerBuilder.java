@@ -1,20 +1,20 @@
-package com.tracebucket.x1.partner.integration.test.builder;
+package com.tracebucket.x1.organization.partner.integration.test.builder;
 
 import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultOwner;
 
 /**
  * Created by vishwa on 23-01-2015.
  */
-public class DefaultOwnerBuilder {
+public class OwnerBuilder {
     private String organizationUID;
 
-    private DefaultOwnerBuilder(){ }
+    private OwnerBuilder(){ }
 
-    public static DefaultOwnerBuilder anOwnerBuilder(){
-        return new DefaultOwnerBuilder();
+    public static OwnerBuilder anOwnerBuilder(){
+        return new OwnerBuilder();
     }
 
-    public DefaultOwnerBuilder withOrganizationUID(String organizationUID){
+    public OwnerBuilder withOrganizationUID(String organizationUID){
         this.organizationUID = organizationUID;
         return this;
     }
