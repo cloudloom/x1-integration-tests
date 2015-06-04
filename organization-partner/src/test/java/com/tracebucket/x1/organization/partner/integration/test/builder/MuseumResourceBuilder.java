@@ -2,8 +2,6 @@ package com.tracebucket.x1.organization.partner.integration.test.builder;
 
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.AddressResource;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.MuseumResource;
-import com.tracebucket.x1.partner.api.rest.resources.DefaultAddressResource;
-import com.tracebucket.x1.partner.api.rest.resources.DefaultMuseumResource;
 
 import java.util.HashSet;
 import java.util.Set;

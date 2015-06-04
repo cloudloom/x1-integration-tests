@@ -1,7 +1,6 @@
 package com.tracebucket.x1.organization.partner.integration.test.builder;
 
 import com.tracebucket.x1.dictionary.api.domain.EmailType;
-import com.tracebucket.x1.organization.api.rest.resource.DefaultEmailResource;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.EmailResource;
 
 /**

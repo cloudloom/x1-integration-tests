@@ -3,8 +3,6 @@ package com.tracebucket.x1.organization.partner.integration.test.fixture;
 import com.tracebucket.x1.organization.partner.integration.test.builder.TransportProviderResourceBuilder;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.AddressResource;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.TransportProviderResource;
-import com.tracebucket.x1.partner.api.rest.resources.DefaultAddressResource;
-import com.tracebucket.x1.partner.api.rest.resources.DefaultTransportProviderResource;
 
 import java.util.HashSet;
 import java.util.Set;

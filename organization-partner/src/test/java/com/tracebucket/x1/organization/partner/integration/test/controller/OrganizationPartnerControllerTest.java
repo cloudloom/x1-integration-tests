@@ -7,7 +7,6 @@ import com.tracebucket.x1.organization.partner.integration.test.fixture.Organiza
 import com.tracebucket.x1.organization.partner.integration.test.fixture.PartnerResourceFixture;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.OrganizationResource;
 import com.tracebucket.x1.organization.partner.integration.test.rest.resources.PartnerResource;
-import com.tracebucket.x1.partner.api.rest.resources.DefaultPartnerResource;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,9 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;

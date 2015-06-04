@@ -2,7 +2,6 @@ package com.tracebucket.x1.partner.integration.test.fixture;
 
 import com.tracebucket.x1.partner.api.dictionary.PartnerCategory;
 import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultAffiliate;
-import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultOwner;
 import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultPartner;
 import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultPartnerRole;
 import com.tracebucket.x1.partner.integration.test.builder.DefaultPartnerBuilder;
