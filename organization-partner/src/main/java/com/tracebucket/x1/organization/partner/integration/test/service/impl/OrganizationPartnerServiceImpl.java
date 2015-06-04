@@ -50,13 +50,9 @@ public class OrganizationPartnerServiceImpl implements OrganizationPartnerServic
         List<DefaultOrganization> organizations = organizationService.findAll();
         ConcurrentHashMap<DefaultOrganization, Set<DefaultPartner>> response = new ConcurrentHashMap<DefaultOrganization, Set<DefaultPartner>>();
         if(organizations != null && organizations.size() > 0) {
-            organizations.parallelStream().forEach(o -> {
-                List<DefaultPartner> partners = partnerService.findPartnersByOrganization(o.getAggregateId().getAggregateId());
-                if(partners != null && partners.size() > 0) {
-                    response.put(o, new HashSet<DefaultPartner>(partners));
-                } else {
-                    response.put(o, Collections.emptySet());
-                }
+            organizations.parallelStream().forEach(organization -> {
+                List<DefaultPartner> partners = partnerService.findPartnersByOrganization(organization.getAggregateId().getAggregateId());
+                response.put(organization, partners != null ? new HashSet<DefaultPartner>(partners) : Collections.emptySet());
             });
         }
         return response;
