@@ -60,8 +60,8 @@ public class OrganizationPartnerController {
                 organizationsPartnersResources.put(organizationResourceAssembler.toResource(e.getKey(), DefaultOrganizationResource.class),
                         partnerResourceAssembler.toResources(e.getValue(), DefaultPartnerResource.class));
             });
-            return new ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>>(organizationsPartnersResources, HttpStatus.CREATED);
+            return new ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>>(organizationsPartnersResources, HttpStatus.FOUND);
         }
-        return new ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>>(Collections.emptyMap(), HttpStatus.OK);
+        return new ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>>(Collections.emptyMap(), HttpStatus.NOT_FOUND);
     }
 }
