@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @ControllerAdvice
 public class OrganizationPartnerAdvice {
-    @ExceptionHandler(OrganizationException.class)
+    @ExceptionHandler(OrganizationPartnerException.class)
     @ResponseBody
     public ResponseEntity<String> handleOrganizationPartnerException(OrganizationPartnerException ex) {
         return new ResponseEntity<String>(ex.getMessage(), ex.getHttpStatus());
