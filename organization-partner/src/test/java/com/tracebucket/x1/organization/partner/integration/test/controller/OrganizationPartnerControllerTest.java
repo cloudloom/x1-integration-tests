@@ -96,7 +96,7 @@ public class OrganizationPartnerControllerTest {
         Assert.assertNotNull(partner.getUid());
         Assert.assertNotNull(partner.getOwner());
         Assert.assertNotNull(partner.getOwner().getOrganizationUID());
-        Map<DefaultOrganizationResource, List<DefaultPartnerResource>> response = restTemplate.getForObject(basePath + "/organizations/partners", Map.class);
+        List<OrganizationResource> response = restTemplate.getForObject(basePath + "/organizations/partners", List.class);
         Assert.assertNotNull(response);
         Assert.assertTrue(response.size() > 0);
     }

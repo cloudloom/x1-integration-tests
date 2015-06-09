@@ -1,6 +1,5 @@
 package com.tracebucket.x1.organization.partner.integration.test.rest.controller.advice;
 
-import com.tracebucket.x1.organization.api.rest.exception.OrganizationException;
 import com.tracebucket.x1.organization.partner.integration.test.rest.exception.OrganizationPartnerException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

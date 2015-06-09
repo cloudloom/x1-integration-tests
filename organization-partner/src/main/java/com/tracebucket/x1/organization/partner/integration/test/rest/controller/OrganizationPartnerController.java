@@ -3,8 +3,9 @@ package com.tracebucket.x1.organization.partner.integration.test.rest.controller
 import com.tracebucket.tron.assembler.AssemblerResolver;
 import com.tracebucket.tron.assembler.ResourceAssembler;
 import com.tracebucket.x1.organization.api.domain.impl.jpa.DefaultOrganization;
-import com.tracebucket.x1.organization.api.rest.resource.DefaultOrganizationResource;
 import com.tracebucket.x1.organization.partner.integration.test.rest.exception.OrganizationPartnerException;
+import com.tracebucket.x1.organization.partner.integration.test.rest.resources.OrganizationResource;
+import com.tracebucket.x1.organization.partner.integration.test.rest.resources.PartnerResource;
 import com.tracebucket.x1.organization.partner.integration.test.service.OrganizationPartnerService;
 import com.tracebucket.x1.partner.api.domain.impl.jpa.DefaultPartner;
 import com.tracebucket.x1.partner.api.rest.resources.DefaultPartnerResource;
@@ -50,18 +51,21 @@ public class OrganizationPartnerController {
     }
 
     @RequestMapping(value = "/organizations/partners", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>> getOrganizationsPartners() {
-        Map<DefaultOrganizationResource, Set<DefaultPartnerResource>> organizationsPartnersResources = new HashMap<DefaultOrganizationResource, Set<DefaultPartnerResource>>();
+    public ResponseEntity<List<OrganizationResource>> getOrganizationsPartners() {
+        List<OrganizationResource> organizationsPartnersResources = new ArrayList<OrganizationResource>();
         Map<DefaultOrganization, Set<DefaultPartner>> organizationsPartners = organizationPartnerService.getOrganizationsPartners();
         if(organizationsPartners != null && organizationsPartners.size() > 0) {
-            ResourceAssembler<DefaultOrganizationResource, DefaultOrganization> organizationResourceAssembler = assemblerResolver.resolveResourceAssembler(DefaultOrganizationResource.class, DefaultOrganization.class);
-            ResourceAssembler<DefaultPartnerResource, DefaultPartner> partnerResourceAssembler = assemblerResolver.resolveResourceAssembler(DefaultPartnerResource.class, DefaultPartner.class);
+            ResourceAssembler<OrganizationResource, DefaultOrganization> organizationResourceAssembler = assemblerResolver.resolveResourceAssembler(OrganizationResource.class, DefaultOrganization.class);
+            ResourceAssembler<PartnerResource, DefaultPartner> partnerResourceAssembler = assemblerResolver.resolveResourceAssembler(PartnerResource.class, DefaultPartner.class);
             organizationsPartners.entrySet().parallelStream().forEach(e -> {
-                organizationsPartnersResources.put(organizationResourceAssembler.toResource(e.getKey(), DefaultOrganizationResource.class),
-                        partnerResourceAssembler.toResources(e.getValue(), DefaultPartnerResource.class));
+                OrganizationResource organizationResource = organizationResourceAssembler.toResource(e.getKey(), OrganizationResource.class);
+                if(organizationResource != null) {
+                    organizationResource.getPartners().addAll(partnerResourceAssembler.toResources(e.getValue(), PartnerResource.class));
+                    organizationsPartnersResources.add(organizationResource);
+                }
             });
-            return new ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>>(organizationsPartnersResources, HttpStatus.FOUND);
+            return new ResponseEntity<List<OrganizationResource>>(organizationsPartnersResources, HttpStatus.FOUND);
         }
-        return new ResponseEntity<Map<DefaultOrganizationResource, Set<DefaultPartnerResource>>>(Collections.emptyMap(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<OrganizationResource>>(Collections.emptyList(), HttpStatus.NOT_FOUND);
     }
 }

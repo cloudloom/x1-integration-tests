@@ -22,6 +22,7 @@ public class OrganizationResource extends BaseResource {
     private Set<PhoneResource> phones = new HashSet<PhoneResource>(0);
     private Set<EmailResource> emails = new HashSet<EmailResource>(0);
     private Set<OrganizationUnitResource> organizationUnits = new HashSet<OrganizationUnitResource>(0);
+    private Set<PartnerResource> partners = new HashSet<PartnerResource>(0);
 
     public String getCode() {
         return code;
@@ -117,5 +118,13 @@ public class OrganizationResource extends BaseResource {
 
     public void setOrganizationUnits(Set<OrganizationUnitResource> organizationUnits) {
         this.organizationUnits = organizationUnits;
+    }
+
+    public Set<PartnerResource> getPartners() {
+        return partners;
+    }
+
+    public void setPartners(Set<PartnerResource> partners) {
+        this.partners = partners;
     }
 }
